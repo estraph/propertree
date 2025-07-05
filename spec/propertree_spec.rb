@@ -2,6 +2,6 @@
 
 RSpec.describe Propertree do
   it "has a version number" do
-    expect(Propertree::VERSION).not_to be nil
+    expect(Propertree::VERSION).not_to be_nil
   end
 end
