@@ -33,5 +33,6 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # Uncomment to register a new dependency of your gem
+  # Note: Add development dependencies to the Gemfile instead
   # spec.add_dependency "example-gem", "~> 1.0"
 end

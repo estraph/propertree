@@ -2,9 +2,12 @@
 
 source "https://rubygems.org"
 
+# production dependencies
+# these are packaged with the gem and defined in the .gemspec
 gemspec
 
-# TODO: maybe should be dev deps in gemspec
+# development dependencies go here
+# these are not included in the released gem
 gem "gem-release", "~> 2.2.4"
 gem "irb"
 gem "rake", "~> 13.0"
