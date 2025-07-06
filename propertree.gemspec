@@ -13,6 +13,7 @@ Gem::Specification.new do |spec|
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.1.0"
 
+  spec.metadata = { "github_repo" => "ssh://github.com/estraph/propertree" }
   spec.metadata["allowed_push_host"] = "https://rubygems.pkg.github.com"
 
   spec.metadata["homepage_uri"] = spec.homepage
