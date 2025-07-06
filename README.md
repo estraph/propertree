@@ -2,6 +2,15 @@
 This gem contains the solution to a fun little [challenge](./CHALLENGE.md): to determine and compare the average property values on streets where the trees are tall with those where trees are short.
 
 ## Installation
+This library uses SQLite - make sure to install it on your target host. If it's missing, you might see an error like below:
+
+```
+sqlite3.h is missing. Try 'brew install sqlite3',
+'yum install sqlite-devel' or 'apt-get install libsqlite3-dev'
+```
+
+Follow those instructions to install SQLite to proceed.
+
 ### RubyGems
 Add the GH repo as a gem source and run `gem install`:
 

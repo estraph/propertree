@@ -34,5 +34,7 @@ Gem::Specification.new do |spec|
 
   # Uncomment to register a new dependency of your gem
   # Note: Add development dependencies to the Gemfile instead
-  # spec.add_dependency "example-gem", "~> 1.0"
+  spec.add_dependency "activemodel", "~> 8.0.2"
+  spec.add_dependency "activerecord", "~> 8.0.2"
+  spec.add_dependency "sqlite3", "~> 1.3.11"
 end

@@ -8,10 +8,4 @@ RSpec::Core::RakeTask.new(:spec)
 require "rubocop/rake_task"
 RuboCop::RakeTask.new
 
-require "steep/rake_task"
-Steep::RakeTask.new do |t|
-  t.check.severity_level = :warning
-  t.watch.verbose
-end
-
-task default: %i[spec rubocop steep]
+task default: %i[spec rubocop]

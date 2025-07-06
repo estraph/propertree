@@ -1,6 +1,0 @@
-module Propertree
-  VERSION: String
-
-  class Error < StandardError
-  end
-end

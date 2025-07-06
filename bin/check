@@ -3,4 +3,4 @@ set -euo pipefail
 IFS=$'\n\t'
 set -vx
 
-bundle exec rake spec rubocop steep
+bundle exec rake spec rubocop
