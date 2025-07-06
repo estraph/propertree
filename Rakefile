@@ -10,7 +10,7 @@ RuboCop::RakeTask.new
 
 require "steep/rake_task"
 Steep::RakeTask.new do |t|
-  t.check.severity_level = :error
+  t.check.severity_level = :warning
   t.watch.verbose
 end
 

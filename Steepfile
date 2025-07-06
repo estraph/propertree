@@ -6,7 +6,7 @@ target :lib do
   signature "sig"
   ignore_signature "sig/test"
 
-  check "lib" # Directory name
+  check "lib"
   # ignore "lib/templates/*.rb"
 
   library "pathname" # Standard libraries
