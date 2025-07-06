@@ -16,9 +16,7 @@ Add the GH repo as a source to your `Gemfile` and run `bundle install`:
 ```ruby
 # Gemfile
 
-source "https://rubygems.pkg.github.com/estraph" do
-  gem "propertree"
-end
+gem "propertree", source "https://rubygems.pkg.github.com/estraph"
 ```
 
 ## Usage
