@@ -33,6 +33,7 @@ GEM
     ffi (1.17.2)
     ffi (1.17.2-x86_64-linux-gnu)
     fileutils (1.7.3)
+    gem-release (2.2.4)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
     io-console (0.8.0)
@@ -142,6 +143,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  gem-release (~> 2.2.4)
   irb
   propertree!
   rake (~> 13.0)

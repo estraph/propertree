@@ -5,6 +5,7 @@ source "https://rubygems.org"
 gemspec
 
 # TODO: maybe should be dev deps in gemspec
+gem "gem-release", "~> 2.2.4"
 gem "irb"
 gem "rake", "~> 13.0"
 gem "rspec", "~> 3.0"
