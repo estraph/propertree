@@ -25,7 +25,7 @@ end
 TODO: Write usage instructions here
 
 ## Development
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+After checking out the repo, run `bin/setup` to install dependencies. Run `bin/check` to run the tests, lint and type checks. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
 ### Releases
 Push a commit which updates the [version](./lib/propertree/version.rb) and [changelog](./CHANGELOG.md). Then [create a new release in the GH repo](https://github.com/estraph/propertree/releases/new) which will build and push a new gem.
