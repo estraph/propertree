@@ -65,17 +65,57 @@ RSpec.describe Propertree::Application do
     end
 
     context "with no streets with short trees" do
-      before do
-        properties = build_list(:property, 10)
-        properties.each do |property|
-          property.street.median_tree_height = 11
-          property.street.save
-          property.save
-        end
-      end
+      before { create_list(:property, 10, :tall) }
 
       it "returns zero" do
-        expect(app.average_price_short_trees).to be(0.00)
+        expect(app.average_price_short_trees).to eq(0)
+      end
+    end
+
+    context "with some streets with short trees" do
+      before do
+        create_list(:property, 5, :short, cents: 1_000)
+        create_list(:property, 5, :tall, cents: 2_000)
+      end
+
+      it "returns 10 EUR" do
+        expect(app.average_price_short_trees).to eq(10)
+      end
+    end
+  end
+
+  describe ".average_price_tall_trees" do
+    let(:app) { described_class.new }
+
+    around do |example|
+      app
+      DatabaseCleaner.cleaning do
+        example.run
+      end
+    end
+
+    context "when there are no records" do
+      it "raises an error" do
+        expect { app.average_price_tall_trees }.to raise_error(RuntimeError)
+      end
+    end
+
+    context "with no streets with tall trees" do
+      before { create_list(:property, 10, :short) }
+
+      it "returns zero" do
+        expect(app.average_price_tall_trees).to eq(0)
+      end
+    end
+
+    context "with some streets with tall trees" do
+      before do
+        create_list(:property, 5, :short, cents: 1_000)
+        create_list(:property, 5, :tall, cents: 2_000)
+      end
+
+      it "returns 20 EUR" do
+        expect(app.average_price_tall_trees).to eq(20)
       end
     end
   end

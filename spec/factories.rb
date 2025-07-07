@@ -3,13 +3,28 @@
 FactoryBot.define do
   factory :street, class: "Propertree::Models::Street" do
     sequence(:name) { |n| "foo #{n} street" }
-    median_tree_height { 5 }
+
+    trait :short do
+      median_tree_height { 10 }
+    end
+
+    trait :tall do
+      median_tree_height { 11 }
+    end
   end
 
   factory :property, class: "Propertree::Models::Property" do
-    street { build(:street) }
+    street { build(:street, :short) }
     sequence(:address) { |n| "#{street.name} nr. #{n}" }
-    cents { 100_000 }
+    cents { 1_000 }
     currency { "EUR" }
+
+    trait :short do
+      street { build(:street, :short) }
+    end
+
+    trait :tall do
+      street { build(:street, :tall) }
+    end
   end
 end
