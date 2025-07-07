@@ -34,7 +34,7 @@ Install the gem as instructed above. You have two ways of interating with the co
 ### application executable
 The gem contains a binary called `calculate_averages` which accepts three parameters:
 - the first mandatory parameter is the path to a JSON file containing the street names and median tree heights ([example](./dublin-trees.json))
-- the second manatory parameter is the path to a CSV file containing the properties with their respective prices ([example](./dublin-properties.csv))
+- the second manatory parameter is the path to a CSV file containing the properties with their respective prices ([example](./dublin-property.csv))
 - optionally, the flag `-v` can be passed to enable verbose output for troubleshooting purposes
 
 ### model access
