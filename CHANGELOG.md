@@ -6,8 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+## 0.2.2
+
 ### Changed
 - Install specific package version in CI smoke test workflow
+- Install development dependencies from gemspec instead of Gemfile
 
 ## 0.2.1
 

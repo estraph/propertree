@@ -8,6 +8,7 @@ Propertree::LOG.level = Logger::INFO
 puts ARGV
 app = Propertree::Application.new(verbose: ARGV.include?("-v"))
 
+# TODO: take file names from ARGV as input
 app.load_property_price_csv("./dublin-property.csv")
 app.load_tree_height_json("./dublin-trees.json")
 

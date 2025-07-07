@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    propertree (0.2.1)
+    propertree (0.2.2)
       activemodel (~> 8.0.2)
       activerecord (~> 8.0.2)
       sqlite3 (~> 2.7.2)
@@ -125,11 +125,11 @@ PLATFORMS
 
 DEPENDENCIES
   gem-release (~> 2.2.4)
-  irb
+  irb (~> 1.15)
   propertree!
-  rake (~> 13.0)
-  rspec (~> 3.0)
-  rubocop (~> 1.21)
+  rake (~> 13.3)
+  rspec (~> 3.13)
+  rubocop (~> 1.77)
   rubocop-rake (~> 0.7.1)
   rubocop-rspec (~> 3.6.0)
 
