@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "propertree/application"
+
+Propertree::LOG.level = Logger::INFO
+
+puts ARGV
+app = Propertree::Application.new(verbose: ARGV.include?("-v"))
+
+app.load_property_price_csv("./dublin-property.csv")
+app.load_tree_height_json("./dublin-trees.json")
+
+Propertree::LOG.info <<~ANSWER
+  average cost of a property
+  - on a street with tall trees: #{app.average_price_tall_trees}
+  - on a street with short trees: #{app.average_price_short_trees}
+ANSWER
