@@ -30,4 +30,4 @@ jobs:
     - name: Install and run the gem
       run: |
         gem install propertree -s https://github:${{secrets.GITHUB_TOKEN}}@rubygems.pkg.github.com/estraph -v ${{ github.ref_name }}
-        calculate_averages -v
+        calculate_averages dublin-trees.json dublin-property.csv -v
