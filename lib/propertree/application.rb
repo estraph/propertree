@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "csv"
-require "debug"
 
 require "propertree"
 require "propertree/models/property"
