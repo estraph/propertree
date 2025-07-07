@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+## 0.3.0
+
 ### Added
 - calculate_averages binary now takes files as arguments for DB initialisation
 - calculate_averages now prints results

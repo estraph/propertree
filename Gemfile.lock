@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    propertree (0.2.2)
+    propertree (0.3.0)
       activemodel (~> 8.0.2)
       activerecord (~> 8.0.2)
       csv (~> 3.3.5)
