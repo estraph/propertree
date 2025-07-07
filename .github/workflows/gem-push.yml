@@ -29,5 +29,5 @@ jobs:
         gem push --KEY github --host https://rubygems.pkg.github.com/estraph propertree*.gem
     - name: Install and run the gem
       run: |
-        gem install propertree -s "https://github:${{secrets.GITHUB_TOKEN}}rubygems.pkg.github.com/estraph"
+        gem install propertree -s https://github:${{secrets.GITHUB_TOKEN}}@rubygems.pkg.github.com/estraph
         bundle exec calculate_averages -v
