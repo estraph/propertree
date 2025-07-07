@@ -29,7 +29,16 @@ gem "propertree", source "https://rubygems.pkg.github.com/estraph"
 ```
 
 ## Usage
-TODO: Write usage instructions here
+Install the gem as instructed above. You have two ways of interating with the code: either through the executable provided, or by accessing the internal models directly.
+
+### application executable
+The gem contains a binary called `calculate_averages` which accepts three parameters:
+- the first mandatory parameter is the path to a JSON file containing the street names and median tree heights ([example](./dublin-trees.json))
+- the second manatory parameter is the path to a CSV file containing the properties with their respective prices ([example](./dublin-properties.csv))
+- optionally, the flag `-v` can be passed to enable verbose output for troubleshooting purposes
+
+### model access
+The models `Propertree::Models::Property` and `Propertree::Models::Street` can be used to load data into the in-memory DB and subsequently query it for insights, such as is currently done for the average prices.
 
 ## Development
 After checking out the repo, run `bin/setup` to install dependencies. Run `bin/check` to run the tests, lint and type checks. You can also run `bin/console` for an interactive prompt that will allow you to experiment.

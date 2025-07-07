@@ -9,8 +9,8 @@ verbose_flag = ARGV.delete("-v")
 app = Propertree::Application.new(verbose: !verbose_flag.nil?)
 
 # TODO: use Thor for better flag handling ergonomics
-app.load_property_price_csv(ARGV[0])
-app.load_tree_height_json(ARGV[1])
+app.load_streets(ARGV[0])
+app.load_properties(ARGV[1])
 
 Propertree::LOG.info <<~ANSWER
   average cost of a property

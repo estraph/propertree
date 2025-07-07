@@ -6,7 +6,7 @@ module Propertree
   module Models
     class Property < ActiveRecord::Base
       belongs_to :street
-      validates :address, presence: true, uniqueness: true
+      validates :address, presence: true
       validates :cents, numericality: { only_integer: true, greater_than: 0 }
       validates :currency, inclusion: { in: %w[EUR] }
 
@@ -17,7 +17,7 @@ module Propertree
       class Migration < ActiveRecord::Migration[8.0]
         def up
           create_table :properties, if_not_exists: true do |t|
-            t.string :address, index: { unique: true, name: "idx_unique_address" }, null: false
+            t.string :address, index: { name: "idx_unique_address" }, null: false
             t.integer :cents, null: false
             t.string :currency, null: false, default: "EUR"
             t.belongs_to :street, index: { name: "idx_street" }

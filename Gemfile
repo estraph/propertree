@@ -7,6 +7,7 @@ source "https://rubygems.org"
 gemspec
 
 # development dependencies only
+gem "debug", "~> 1.11"
 gem "gem-release", "~> 2.2.4"
 gem "irb", "~> 1.15"
 gem "rake", "~> 13.3"

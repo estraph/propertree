@@ -34,5 +34,6 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "activemodel", "~> 8.0.2"
   spec.add_dependency "activerecord", "~> 8.0.2"
+  spec.add_dependency "csv", "~> 3.3.5"
   spec.add_dependency "sqlite3", "~> 2.7.2"
 end

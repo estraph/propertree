@@ -6,7 +6,7 @@ module Propertree
   module Models
     class Street < ActiveRecord::Base
       has_many :properties
-      validates :name, presence: true, uniqueness: true, format: { with: /\A[a-z_]+\z/, message: "only snake_case allowed" }
+      validates :name, presence: true, uniqueness: true
       validates :median_tree_height, numericality: { greater_than_or_equal_to: 0 }
 
       class Migration < ActiveRecord::Migration[8.0]
