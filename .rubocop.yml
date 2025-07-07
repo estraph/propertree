@@ -1,5 +1,4 @@
 plugins:
-  - rubocop-rake
   - rubocop-rspec
 
 AllCops:

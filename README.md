@@ -29,7 +29,7 @@ gem "propertree", source "https://rubygems.pkg.github.com/estraph"
 ```
 
 ## Usage
-Install the gem as instructed above. You have two ways of interating with the code: either through the executable provided, or by accessing the internal models directly.
+Install the gem as instructed above. You have two ways of interacting with the code: either through the executable provided, or by accessing the internal models directly.
 
 ### application executable
 The gem contains a binary called `calculate_averages` which accepts three parameters:
