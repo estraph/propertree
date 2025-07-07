@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+### Added
+- First unit tests, including factories and rspec configurations
+
 ### Removed
 - rake was barely used
 - unneeded calculator class

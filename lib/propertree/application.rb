@@ -18,15 +18,19 @@ module Propertree
     end
 
     def average_price_short_trees(max_height: 10)
+      raise "no data loaded!" unless Propertree::Models::Property.count.positive?
+
       avg = Propertree::Models::Property.joins(:street).where("streets.median_tree_height <= #{max_height}").average(:cents)
-      raise "no data loaded!" unless avg
+      return 0.00 unless avg
 
       avg * 0.01
     end
 
     def average_price_tall_trees(min_height: 11)
+      raise "no data loaded!" unless Propertree::Models::Street.count.positive?
+
       avg = Propertree::Models::Property.joins(:street).where("streets.median_tree_height >= #{min_height}").average(:cents)
-      raise "no data loaded!" unless avg
+      return 0.00 unless avg
 
       avg * 0.01
     end
