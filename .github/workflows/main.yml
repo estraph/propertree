@@ -25,3 +25,7 @@ jobs:
           bundler-cache: true
       - name: Run the default task
         run: bundle exec rake
+      - name: Install the gem
+        run: gem install propertree -s https://rubygems.pkg.github.com/estraph
+      - name: Run the executable
+        run: bundle exec calculate_averages -v
