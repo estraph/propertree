@@ -5,12 +5,12 @@ require "propertree/application"
 
 Propertree::LOG.level = Logger::INFO
 
-puts ARGV
-app = Propertree::Application.new(verbose: ARGV.include?("-v"))
+verbose_flag = ARGV.delete("-v")
+app = Propertree::Application.new(verbose: !verbose_flag.nil?)
 
-# TODO: take file names from ARGV as input
-app.load_property_price_csv("./dublin-property.csv")
-app.load_tree_height_json("./dublin-trees.json")
+# TODO: use Thor for better flag handling ergonomics
+app.load_property_price_csv(ARGV[0])
+app.load_tree_height_json(ARGV[1])
 
 Propertree::LOG.info <<~ANSWER
   average cost of a property
