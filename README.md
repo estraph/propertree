@@ -1,6 +1,20 @@
 # Propertree
 This gem contains the solution to a fun little [challenge](./CHALLENGE.md): to determine and compare the average property values on streets where the trees are tall with those where trees are short.
 
+### TL;DR
+If you just want to run this thing and check the answer, this is how:
+- `asdf install`: install ruby 3.4.4
+- `gem install bundler`: install bundler
+- `bin/setup`: install dependencies
+- `bin/check`: run tests
+- `bundle exec exe/calculate_averages dublin-trees.json dublin-property.csv`: calculate the averages. output:
+
+```sh
+2025-07-08 01:14:00 +0100  INFO: average cost of a property
+- on a street with tall trees: 587800.39
+- on a street with short trees: 488981.66
+```
+
 ## Installation
 This library uses SQLite - make sure to install it on your target host. If it's missing, you might see an error like below:
 

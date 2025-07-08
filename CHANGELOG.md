@@ -11,6 +11,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Changed
 - Rubocop allows multiple expectations per example
+- calculate_averages binary now rounds result to two decimal places
+- updated documentation in README
 
 ## 0.4.0
 

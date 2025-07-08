@@ -14,6 +14,6 @@ app.load_properties(ARGV[1])
 
 Propertree::LOG.info <<~ANSWER
   average cost of a property
-  - on a street with tall trees: #{app.average_price_tall_trees}
-  - on a street with short trees: #{app.average_price_short_trees}
+  - on a street with tall trees: #{app.average_price_tall_trees.round(2)}
+  - on a street with short trees: #{app.average_price_short_trees.round(2)}
 ANSWER
