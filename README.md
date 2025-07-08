@@ -15,6 +15,20 @@ If you just want to run this thing and check the answer, this is how:
 - on a street with short trees: 488981.66
 ```
 
+### Notes
+Some assumptions and decisions I made which are worth mentioning, and discussing in a follow-up chat:
+- avoided traversing JSON, instead "grep" for relevant lines
+- assumptions about file structure
+- assuming re-use, gem is ideal. CLI to run, and Models to access in custom code
+- SQLite because relational problem calls for a (lightweight) relational DB
+- ActiveRecord and ActiveModel are production-ready ORM and model framework (used in Rails)
+- CI and semi-automatic release
+- TODO: error messages
+- TODO: variable naming
+- optimise for feedback loops
+- probably a little bit overkill for the logic enclosed; worth it on a team
+- skipped type checking, got in the way, and am not convinced it's worth it
+
 ## Installation
 This library uses SQLite - make sure to install it on your target host. If it's missing, you might see an error like below:
 
