@@ -25,14 +25,19 @@ The following are some thoughts and notes on decisions made, and which we can di
 #### Ruby gem
 I have packaged this solution as a Ruby gem for two reasons: the challenge suggested a production scenario, and it was implied that engineers might want to re-use the logic in other applications. Rather than assume they would copy and paste it (which I wouldn't appreciate in production), the canonical way for sharing code in Ruby is through a gem. Thus, this gem is also hosted on GitHub and includes CI for rapid feedback and basic release automation. I would approach this in a similar manner in a real team (and have before).
 
+This does mean that a full gem with CI feels like overkill for what is ultimately just an average calculation on a few numbers :-) but this overhead pays off on a team over time.
+
 #### Relational DB
-The operations required for determining the average price could have easily been complted using just Ruby functionality, by processing the data in lists and maps. I chose to use SQLite instead, because the scenario aked for what I'd do in a production situation. SQLite, combined with ActiveRecord and ActiveModel, gives me a lot for free: input validation, consistency checks and efficient operations for querying the data, including the average price. The resulting code is also arguably more intuitive to the average Ruby developer because it uses libraries and patterns familiar from the Rails framework.
+The operations required for determining the average price could have easily been completed using just Ruby functionality, by processing the data in lists and maps. I chose to use SQLite instead, because the scenario asked for what I'd do in a production situation. SQLite, combined with ActiveRecord and ActiveModel, gives me a lot for free: input validation, consistency checks and efficient operations for querying the data, including the average price. The problem at hand is a very relational problem: joining two sets and cross-referencing it to perform a calculation - using a relational DB makes a lot of sense. The resulting code is also arguably more intuitive to the average Ruby developer because it uses libraries and patterns familiar from the Rails framework.
 
 #### Sanitising the data
 The input data required some cleanup, e.g. the currency values in the CSV and because the JSON data had an irregular structure.
 I chose to do the simplest thing to work with the data presented and not generalise it further:
 - I assumed that property prices will not be presented in arbitrary formats besides what is in the file.
-- I assumed that the fields containing the height per street in the JSON is always on a separate line
+  This allowed me to use simple string operations to remove unwanted characters and parse the value.
+- I assumed that the fields containing the height per street in the JSON is always on a separate line.
+  This allowed me to filter out the surrounding document structure and ingest the relevant values in a `grep`-like manner,
+  rather than parsing the entire document and traversing the object(s) within.
 
 This means the logic is vulnerable to subtle and very possible changes in the input data. For this exercise, I chose to assume data will always arrive in this exact format and thus keep the complexity lower. We can make things more complex later, if ever required.
 
