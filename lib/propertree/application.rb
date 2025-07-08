@@ -18,7 +18,7 @@ module Propertree
     end
 
     def average_price_short_trees(max_height: 10)
-      raise "no data loaded!" unless Propertree::Models::Property.count.positive?
+      raise "no data loaded!" unless Propertree::Models::Property.any?
 
       avg = Propertree::Models::Property.joins(:street).where("streets.median_tree_height <= #{max_height}").average(:cents)
       return 0.00 unless avg
@@ -27,7 +27,7 @@ module Propertree
     end
 
     def average_price_tall_trees(min_height: 11)
-      raise "no data loaded!" unless Propertree::Models::Street.count.positive?
+      raise "no data loaded!" unless Propertree::Models::Street.any?
 
       avg = Propertree::Models::Property.joins(:street).where("streets.median_tree_height >= #{min_height}").average(:cents)
       return 0.00 unless avg
@@ -54,7 +54,7 @@ module Propertree
       # grep-ish: filter out lines which have a numeric value
       # this makes an assumption about the file format having key-value pairs on separate lines
       content.lines.select { |l| l.match(/\d/) }.map { |l| l.split(":") }.each do |name, height|
-        name = name.strip.gsub(/"/, "")
+        name = name.strip.gsub('"', "")
         height = height.to_i
         LOG.debug("loading Street: name=#{name} height=#{height}")
         Propertree::Models::Street.create!(name: name, median_tree_height: height)
