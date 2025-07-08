@@ -48,10 +48,10 @@ module Propertree
       avg_cents = Propertree::Models::Property.joins(:street)
                                               .where(street: { median_tree_height: range })
                                               .average(:cents)
-      cents_to_dollars(avg_cents)
+      cents_to_decimal(avg_cents)
     end
 
-    def cents_to_dollars(cents)
+    def cents_to_decimal(cents)
       return 0.00 unless cents
 
       cents * 0.01
