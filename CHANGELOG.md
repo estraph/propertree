@@ -6,11 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+## 1.0.0
+
 ### Added
 - enabled various rubocop NewCops
+- additional documentation in the README
 
 ### Changed
 - minor code adjustments to adhere to newly enabled lint rules
+- use custom error message for missing data
 
 ## 0.5.0
 
