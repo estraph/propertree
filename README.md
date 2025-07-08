@@ -15,6 +15,8 @@ If you just want to run this thing and check the answer, this is how:
 - on a street with short trees: 488981.66
 ```
 
+The data shows: **YES**, houses *are* more expensive on streets with tall trees compared to those with shorter trees.
+
 ### Notes
 Some assumptions and decisions I made which are worth mentioning, and discussing in a follow-up chat:
 - avoided traversing JSON, instead "grep" for relevant lines
