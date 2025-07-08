@@ -19,6 +19,23 @@ See the [Installation](#installation) section for more details.
 
 The data shows: **YES**, houses *are* more expensive on streets with tall trees compared to those with shorter trees.
 
+### Notes
+The following are some thoughts and notes on decisions made, and which we can dig into in a follow-up conversation.
+
+#### Ruby gem
+I have packaged this solution as a Ruby gem for two reasons: the challenge suggested a production scenario, and it was implied that engineers might want to re-use the logic in other applications. Rather than assume they would copy and paste it (which I wouldn't appreciate in production), the canonical way for sharing code in Ruby is through a gem. Thus, this gem is also hosted on GitHub and includes CI for rapid feedback and basic release automation. I would approach this in a similar manner in a real team (and have before).
+
+#### Relational DB
+The operations required for determining the average price could have easily been complted using just Ruby functionality, by processing the data in lists and maps. I chose to use SQLite instead, because the scenario aked for what I'd do in a production situation. SQLite, combined with ActiveRecord and ActiveModel, gives me a lot for free: input validation, consistency checks and efficient operations for querying the data, including the average price. The resulting code is also arguably more intuitive to the average Ruby developer because it uses libraries and patterns familiar from the Rails framework.
+
+#### Sanitising the data
+The input data required some cleanup, e.g. the currency values in the CSV and because the JSON data had an irregular structure.
+I chose to do the simplest thing to work with the data presented and not generalise it further:
+- I assumed that property prices will not be presented in arbitrary formats besides what is in the file.
+- I assumed that the fields containing the height per street in the JSON is always on a separate line
+
+This means the logic is vulnerable to subtle and very possible changes in the input data. For this exercise, I chose to assume data will always arrive in this exact format and thus keep the complexity lower. We can make things more complex later, if ever required.
+
 ## Installation
 This library uses SQLite - make sure to install it on your target host. If it's missing, you might see an error like below:
 
