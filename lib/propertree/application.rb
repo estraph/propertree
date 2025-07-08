@@ -19,47 +19,80 @@ module Propertree
     end
 
     def average_price_short_trees(max_height: 10)
-      raise MissingDataError, "No property data present" unless Propertree::Models::Property.any?
-
-      avg = Propertree::Models::Property.joins(:street).where("streets.median_tree_height <= #{max_height}").average(:cents)
-      return 0.00 unless avg
-
-      avg * 0.01
+      average_price_for_tree_height_range(..max_height)
     end
 
     def average_price_tall_trees(min_height: 11)
-      raise MissingDataError, "No street data present" unless Propertree::Models::Street.any?
-
-      avg = Propertree::Models::Property.joins(:street).where("streets.median_tree_height >= #{min_height}").average(:cents)
-      return 0.00 unless avg
-
-      avg * 0.01
+      average_price_for_tree_height_range(min_height..)
     end
 
     def load_properties(file_path)
       LOG.debug("load: #{file_path}")
-      CSV.foreach(file_path, headers: true, encoding: "ISO-8859-1") do |row|
-        address = row["Address"]
-        # assuming the "cleaned" street names in both files match exactly
-        street = Propertree::Models::Street.find_by!(name: row["Street Name"])
-        # remove any non-alphanumeric characters, including punctuation
-        cents = row["Price"].gsub(/\W/, "").to_i
-        LOG.debug("loading Property: address=#{address} street=#{street} cents=#{cents}")
-        Propertree::Models::Property.create!(address: address, street: street, cents: cents)
+      properties_data_from_csv(file_path).each do |property_data|
+        create_property_from_csv_row(property_data)
       end
     end
 
     def load_streets(file_path)
       LOG.debug("load: #{file_path}")
-      content = File.read(file_path)
-      # grep-ish: filter out lines which have a numeric value
-      # this makes an assumption about the file format having key-value pairs on separate lines
-      content.lines.select { |l| l.match(/\d/) }.map { |l| l.split(":") }.each do |name, height|
-        name = name.strip.gsub('"', "")
-        height = height.to_i
-        LOG.debug("loading Street: name=#{name} height=#{height}")
-        Propertree::Models::Street.create!(name: name, median_tree_height: height)
+      street_data_from_file(file_path).each do |name, height|
+        create_street(name, height)
       end
+    end
+
+    private
+
+    def average_price_for_tree_height_range(range)
+      raise MissingDataError, "No property data present" unless Propertree::Models::Property.any?
+
+      avg_cents = Propertree::Models::Property.joins(:street)
+                                              .where(street: { median_tree_height: range })
+                                              .average(:cents)
+      cents_to_dollars(avg_cents)
+    end
+
+    def cents_to_dollars(cents)
+      return 0.00 unless cents
+
+      cents * 0.01
+    end
+
+    def properties_data_from_csv(file_path)
+      CSV.read(file_path, headers: true, encoding: "ISO-8859-1")
+    end
+
+    def create_property_from_csv_row(row)
+      street = find_street_for_property(row["Street Name"])
+      price_in_cents = parse_price(row["Price"])
+      address = row["Address"]
+
+      LOG.debug("loading Property: address=#{address} street=#{street} cents=#{price_in_cents}")
+      Propertree::Models::Property.create!(address: address, street: street, cents: price_in_cents)
+    end
+
+    def find_street_for_property(street_name)
+      Propertree::Models::Street.find_by!(name: street_name)
+    end
+
+    def parse_price(price_string)
+      price_string.gsub(/\W/, "").to_i
+    end
+
+    def street_data_from_file(file_path)
+      File.readlines(file_path)
+          .select { |line| line.match(/\d/) }
+          .map { |line| line.split(":") }
+    end
+
+    def create_street(name, height)
+      cleaned_name = clean_street_name(name)
+      height_value = height.to_i
+      LOG.debug("loading Street: name=#{cleaned_name} height=#{height_value}")
+      Propertree::Models::Street.create!(name: cleaned_name, median_tree_height: height_value)
+    end
+
+    def clean_street_name(name)
+      name.strip.gsub('"', "")
     end
   end
 end
