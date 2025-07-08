@@ -3,6 +3,7 @@
 require "csv"
 
 require "propertree"
+require "propertree/missing_data_error"
 require "propertree/models/property"
 require "propertree/models/street"
 
@@ -18,7 +19,7 @@ module Propertree
     end
 
     def average_price_short_trees(max_height: 10)
-      raise "no data loaded!" unless Propertree::Models::Property.any?
+      raise MissingDataError, "No property data present" unless Propertree::Models::Property.any?
 
       avg = Propertree::Models::Property.joins(:street).where("streets.median_tree_height <= #{max_height}").average(:cents)
       return 0.00 unless avg
@@ -27,7 +28,7 @@ module Propertree
     end
 
     def average_price_tall_trees(min_height: 11)
-      raise "no data loaded!" unless Propertree::Models::Street.any?
+      raise MissingDataError, "No street data present" unless Propertree::Models::Street.any?
 
       avg = Propertree::Models::Property.joins(:street).where("streets.median_tree_height >= #{min_height}").average(:cents)
       return 0.00 unless avg

@@ -60,7 +60,7 @@ RSpec.describe Propertree::Application do
 
     context "when there are no records" do
       it "raises an error" do
-        expect { app.average_price_short_trees }.to raise_error(RuntimeError)
+        expect { app.average_price_short_trees }.to raise_error(Propertree::MissingDataError)
       end
     end
 
@@ -96,7 +96,7 @@ RSpec.describe Propertree::Application do
 
     context "when there are no records" do
       it "raises an error" do
-        expect { app.average_price_tall_trees }.to raise_error(RuntimeError)
+        expect { app.average_price_tall_trees }.to raise_error(Propertree::MissingDataError)
       end
     end
 
