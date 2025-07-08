@@ -119,4 +119,27 @@ RSpec.describe Propertree::Application do
       end
     end
   end
+
+  describe "loading the example data files" do
+    let(:app) { described_class.new }
+
+    around do |example|
+      app
+      DatabaseCleaner.cleaning do
+        app.load_streets("dublin-trees.json")
+        app.load_properties("dublin-property.csv")
+        example.run
+      end
+    end
+
+    it "loads the expected property data" do
+      expect(Propertree::Models::Property.count).to be(13_346)
+      expect(Propertree::Models::Property.average(:cents).to_i).to eq(51_408_247)
+    end
+
+    it "loads the expected street data" do
+      expect(Propertree::Models::Street.count).to be(331)
+      expect(Propertree::Models::Street.average(:median_tree_height).to_f).to be_within(0.0001).of(10.6435)
+    end
+  end
 end

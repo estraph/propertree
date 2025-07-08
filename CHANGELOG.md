@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+### Added
+- integration tests using example files
+
+### Changed
+- Rubocop allows multiple expectations per example
+
 ## 0.4.0
 
 ### Added
