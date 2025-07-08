@@ -9,6 +9,8 @@ If you just want to run this thing and check the answer, this is how:
 - `bin/check`: run tests
 - `bundle exec exe/calculate_averages dublin-trees.json dublin-property.csv`: calculate the averages. output:
 
+See the [Installation](#installation) section for more details.
+
 ```sh
 2025-07-08 01:14:00 +0100  INFO: average cost of a property
 - on a street with tall trees: 587800.39
@@ -16,20 +18,6 @@ If you just want to run this thing and check the answer, this is how:
 ```
 
 The data shows: **YES**, houses *are* more expensive on streets with tall trees compared to those with shorter trees.
-
-### Notes
-Some assumptions and decisions I made which are worth mentioning, and discussing in a follow-up chat:
-- avoided traversing JSON, instead "grep" for relevant lines
-- assumptions about file structure
-- assuming re-use, gem is ideal. CLI to run, and Models to access in custom code
-- SQLite because relational problem calls for a (lightweight) relational DB
-- ActiveRecord and ActiveModel are production-ready ORM and model framework (used in Rails)
-- CI and semi-automatic release
-- TODO: error messages
-- TODO: variable naming
-- optimise for feedback loops
-- probably a little bit overkill for the logic enclosed; worth it on a team
-- skipped type checking, got in the way, and am not convinced it's worth it
 
 ## Installation
 This library uses SQLite - make sure to install it on your target host. If it's missing, you might see an error like below:
